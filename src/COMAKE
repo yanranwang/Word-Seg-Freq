@@ -1,0 +1,39 @@
+#edit-mode: -*- python -*-
+#coding:gbk
+
+WORKROOT('../../../../../../')
+
+CopyUsingHardLink(True)
+
+CPPFLAGS('-D_GNU_SOURCE -D__STDC_LIMIT_MACROS -DVERSION=\\\"1.9.8.7\\\"')
+
+CFLAGS('-g -pipe -W -Wall -fPIC')
+
+CXXFLAGS('-g -O2 -pipe -W -Wall -fPIC -Werror')
+
+IDLFLAGS('--compack')
+
+UBRPCFLAGS('--compack')
+
+INCPATHS('. ./include ./output ./output/include')
+
+LDFLAGS('-lpthread -lcrypto -lrt')
+
+CONFIGS('lib2-64/bsl@bsl_1-1-7-0_PD_BL', Libraries('./lib/libbsl.a'))
+CONFIGS('lib2-64/ccode@ccode_3-5-4-0_PD_BL')
+CONFIGS('lib2-64/dict@dict_3-1-15-0_PD_BL')
+CONFIGS('lib2-64/libcrf@libcrf_2-1-3-0_PD_BL')
+CONFIGS('lib2-64/ullib@ullib_3-1-55-0_PD_BL')
+CONFIGS('lib2-64/others-ex@others-ex_3-1-15-0_PD_BL')
+CONFIGS('lib2-64/wordseg@wordseg_3-0-12-2_PD_BL')
+CONFIGS('public/configure@configure_1-2-1-0_PD_BL')
+CONFIGS('public/odict@odict_1-1-4-2_PD_BL')
+CONFIGS('public/sign@sign_1-0-1-1_PD_BL')
+CONFIGS('app/ecom/nova/thirdparty/gflags@gflags_1-0-0-0_PD_BL')
+
+user_sources=GLOB('./*.cpp')
+user_headers=GLOB('./*.h')
+
+Application('wordcount',Sources(user_sources))
+
+
